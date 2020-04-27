@@ -10,7 +10,7 @@ before_build:
 build_script:
 - pwsh: dotnet restore
 - pwsh: dotnet build -c Release --no-restore
-- pwsh: dotnet pack -p:PackageVersion=$(Env:GitVersion_NuGetVersion) -c Release --no-build --output $(Env:APPVEYOR_BUILD_FOLDER)/artifacts/
+- pwsh: dotnet pack -v diag -p:PackageVersion=$(Env:GitVersion_NuGetVersion) -c Release --no-build --output $(Env:APPVEYOR_BUILD_FOLDER)/artifacts/
 
 test_script:
 - cmd: dotnet test
