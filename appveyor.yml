@@ -6,7 +6,7 @@ install:
     choco install dotnetcore-sdk --version 3.1.201 -y
 
 before_build:
-- pwsh: gitversion /l console /output buildserver /updateassemblyinfo /config GitVersion.yml
+- pwsh: gitversion /l console /output buildserver /updateassemblyinfo
 
 build_script:
 - pwsh: >-
