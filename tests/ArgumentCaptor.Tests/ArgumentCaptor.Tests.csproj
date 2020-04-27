@@ -6,10 +6,6 @@
     <AssemblyName>Moq.Contrib.ArgumentCaptor.Tests</AssemblyName>
     <RootNamespace>Moq.Contrib.ArgumentCaptor.Tests</RootNamespace>
 
-    <GenerateAssemblyVersionAttribute>False</GenerateAssemblyVersionAttribute>
-    <GenerateAssemblyFileVersionAttribute>False</GenerateAssemblyFileVersionAttribute>
-    <GenerateAssemblyInformationalVersionAttribute>False</GenerateAssemblyInformationalVersionAttribute>
-
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 

@@ -8,10 +8,6 @@
     <AssemblyName>Moq.Contrib.ArgumentCaptor</AssemblyName>
     <RootNamespace>Moq.Contrib.ArgumentCaptor</RootNamespace>
 
-    <GenerateAssemblyVersionAttribute>False</GenerateAssemblyVersionAttribute>
-    <GenerateAssemblyFileVersionAttribute>False</GenerateAssemblyFileVersionAttribute>
-    <GenerateAssemblyInformationalVersionAttribute>False</GenerateAssemblyInformationalVersionAttribute>
-
     <PackageId>Moq.Contrib.ArgumentCaptor</PackageId>
     <Authors>Maarten Kools</Authors>
     <PackageTags>Moq;contrib</PackageTags>
