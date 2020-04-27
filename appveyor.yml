@@ -5,12 +5,12 @@ install:
 - cmd: choco install dotnetcore-sdk --version 3.1.201 -y
 
 before_build:
-- cmd: gitversion /l console /output buildserver /updateassemblyinfo
+- cmd: gitversion /l console /output buildserver
 
 build_script:
-- cmd: dotnet restore src/ArgumentCaptor/ArgumentCaptor.csproj
-- cmd: dotnet build src/ArgumentCaptor/ArgumentCaptor.csproj /p:Deterministic=true /p:ContinuousIntegrationBuild=true -c Release --no-restore
-- cmd: dotnet pack src/ArgumentCaptor/ArgumentCaptor.csproj -p:PackageVersion=%GitVersion_NuGetVersion% -c Release --no-build --output %APPVEYOR_BUILD_FOLDER%/artifacts/
+- cmd: dotnet restore
+- cmd: dotnet build /p:AssemblyVersion=%AssemblySemVer% /p:AssemblyFileVersion=%AssemblyFileVersion% /p:AssemblyInformationalVersion=%AssemblyInformationalVersion% /p:Deterministic=true /p:ContinuousIntegrationBuild=true -c Release --no-restore
+- cmd: dotnet pack -p:PackageVersion=%GitVersion_NuGetVersion% -c Release --no-build --output %APPVEYOR_BUILD_FOLDER%/artifacts/
 
 test_script:
 - cmd: dotnet test
