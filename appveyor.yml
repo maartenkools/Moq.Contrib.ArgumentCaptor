@@ -1,18 +1,16 @@
 image: Visual Studio 2019
 
 install:
-- pwsh: >-
-    choco install gitversion.portable --version 5.1.3 -y
-    choco install dotnetcore-sdk --version 3.1.201 -y
+- pwsh: choco install gitversion.portable --version 5.1.3 -y
+- pwsh: choco install dotnetcore-sdk --version 3.1.201 -y
 
 before_build:
 - pwsh: gitversion /l console /output buildserver /updateassemblyinfo
 
 build_script:
-- pwsh: >-
-    dotnet restore
-    dotnet build -c Release --no-restore
-    dotnet pack -p:PackageVersion=$(Env:GitVersion_NuGetVersion) -c Release --no-build --output $(Env:APPVEYOR_BUILD_FOLDER)/artifacts/
+- pwsh: dotnet restore
+- pwsh: dotnet build -c Release --no-restore
+- pwsh: dotnet pack -p:PackageVersion=$(Env:GitVersion_NuGetVersion) -c Release --no-build --output $(Env:APPVEYOR_BUILD_FOLDER)/artifacts/
 
 test_script:
 - cmd: dotnet test
