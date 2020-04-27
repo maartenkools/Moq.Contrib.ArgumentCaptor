@@ -17,9 +17,9 @@
     <PackageTags>Moq;contrib</PackageTags>
     <Description>Provides functionality like It.IsAny and ItExpr.IsAny while capturing the value of the arguments.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/maartenkools/Moq.Contrib.ArgumentCaptor</PackageProjectUrl>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
 
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
