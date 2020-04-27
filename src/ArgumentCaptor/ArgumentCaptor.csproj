@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
 
-    <DebugType>pdbonly</DebugType>
+    <DebugType>portable</DebugType>
 
     <AssemblyName>Moq.Contrib.ArgumentCaptor</AssemblyName>
     <RootNamespace>Moq.Contrib.ArgumentCaptor</RootNamespace>
@@ -20,7 +20,6 @@
 
     <Deterministic Condition="'$(APPVEYOR)' == 'True'">true</Deterministic>
     <ContinuousIntegrationBuild Condition="'$(APPVEYOR)'=='True'">true</ContinuousIntegrationBuild>
-    <DeterministicSourcePaths Condition="'$(APPVEYOR)'=='True'">true</DeterministicSourcePaths>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludeSymbols>true</IncludeSymbols>
