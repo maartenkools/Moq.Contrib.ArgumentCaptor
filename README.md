@@ -23,12 +23,12 @@ mock.Verify(x => x.Call(argumentCaptor.Capture()));
 
 // Assert the value that was passed to the Call method.
 argumentCaptor.Should()
-			  .BeEquivalentTo(new[] {"someValue"});
+              .BeEquivalentTo(new[] {"someValue"});
 
 // Or
 argumentCaptor.Single()
               .Should()
-			  .Be("someValue");
+              .Be("someValue");
 ```
 
 ### As a replacement to ItExpr.IsAny<T>()
@@ -42,16 +42,16 @@ mock.Object
 var argumentCaptor = new ArgumentCaptor<HttpRequestMessage>();
 mock.Protected()
     .Verify<>("CallImpl",
-	          Times.Once(),
-			  argumentCaptor.CaptureExpr());
+              Times.Once(),
+              argumentCaptor.CaptureExpr());
 
 // Assert the value that was passed to the CallImpl method.
 argumentCaptor.Should()
-			  .BeEquivalentTo(new[] {"someValue"});
+              .BeEquivalentTo(new[] {"someValue"});
 // Or
 argumentCaptor.Single()
               .Should()
-			  .Be("someValue");
+              .Be("someValue");
 ```
 
 ### Asserting values from multiple calls
@@ -70,7 +70,7 @@ mock.Verify(x => x.Call(argumentCaptor.Capture()), Times.EXactly(2));
 
 // Assert the values that were passed to the Call method.
 argumentCaptor.Should()
-			  .BeEquivalentTo(new[] 
+              .BeEquivalentTo(new[] 
                                 {
                                     "someValue 0",
                                     "someValue 1",
@@ -78,9 +78,9 @@ argumentCaptor.Should()
 
 // You can also assert each value individually
 argumentCaptor[0].Should()
-			     .Be("someValue 0");
+                 .Be("someValue 0");
 argumentCaptor[1].Should()
-			     .Be("someValue 1");
+                 .Be("someValue 1");
 
 // Or in a loop
 for (int i = 0; i < argumentCaptor.Count; ++i)
