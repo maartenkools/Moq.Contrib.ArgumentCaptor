@@ -8,9 +8,9 @@ before_build:
 - cmd: gitversion /l console /output buildserver /updateassemblyinfo
 
 build_script:
-- cmd: dotnet restore src/Moq.Contrib.ArgumentCaptor.csproj
-- cmd: dotnet build src/Moq.Contrib.ArgumentCaptor.csproj /p:Deterministic=true /p:ContinuousIntegrationBuild=true -c Release --no-restore
-- cmd: dotnet pack src/Moq.Contrib.ArgumentCaptor.csproj -p:PackageVersion=%GitVersion_NuGetVersion% -c Release --no-build --output %APPVEYOR_BUILD_FOLDER%/artifacts/
+- cmd: dotnet restore src/ArgumentCaptor/ArgumentCaptor.csproj
+- cmd: dotnet build src/ArgumentCaptor/ArgumentCaptor.csproj /p:Deterministic=true /p:ContinuousIntegrationBuild=true -c Release --no-restore
+- cmd: dotnet pack src/ArgumentCaptor/ArgumentCaptor.csproj -p:PackageVersion=%GitVersion_NuGetVersion% -c Release --no-build --output %APPVEYOR_BUILD_FOLDER%/artifacts/
 
 test_script:
 - cmd: dotnet test
