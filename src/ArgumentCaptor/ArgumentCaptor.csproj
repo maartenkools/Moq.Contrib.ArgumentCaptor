@@ -11,9 +11,22 @@
     <GenerateAssemblyVersionAttribute>False</GenerateAssemblyVersionAttribute>
     <GenerateAssemblyFileVersionAttribute>False</GenerateAssemblyFileVersionAttribute>
     <GenerateAssemblyInformationalVersionAttribute>False</GenerateAssemblyInformationalVersionAttribute>
+
+    <PackageId>Moq.Contrib.ArgumentCaptor</PackageId>
+    <Authors>Maarten Kools</Authors>
+    <PackageTags>Moq;contrib</PackageTags>
+    <Description>Provides functionality like It.IsAny and ItExpr.IsAny while capturing the value of the arguments.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/maartenkools/Moq.Contrib.ArgumentCaptor</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/maartenkools/Moq.Contrib.ArgumentCaptor.git</RepositoryUrl>
+
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
     <PackageReference Include="Moq" Version="[4.8.0,5)" />
   </ItemGroup>
 
