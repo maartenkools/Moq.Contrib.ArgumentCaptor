@@ -9,7 +9,7 @@ before_build:
 
 build_script:
 - cmd: dotnet restore
-- cmd: dotnet build --verbosity detailed -p:AssemblyVersion=%AssemblySemVer% -p:AssemblyFileVersion=%AssemblyFileVersion% -p:AssemblyInformationalVersion=%AssemblyInformationalVersion% -p:ContinuousIntegrationBuild=true -c Release --no-restore
+- cmd: dotnet build -p:AssemblyVersion=%AssemblySemVer% -p:AssemblyFileVersion=%AssemblyFileVersion% -p:AssemblyInformationalVersion=%AssemblyInformationalVersion% -p:ContinuousIntegrationBuild=true -c Release --no-restore
 - cmd: dotnet pack -p:ContinuousIntegrationBuild=true -p:PackageVersion=%GitVersion_NuGetVersion% -c Release --no-build --output %APPVEYOR_BUILD_FOLDER%/artifacts/
 
 test_script:
