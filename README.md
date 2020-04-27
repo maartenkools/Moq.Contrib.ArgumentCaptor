@@ -14,72 +14,78 @@ or `dotnet add package Moq.Contrib.ArgumentCaptor`
 ```csharp
 var mock = new Mock<IMyInterface>();
 
-var sut = new SystemUnderTest(mock.Object);
-sut.CallMethod();
+mock.Object
+    .Call("someValue");
 
+// Verify IMyInterface.Call is called
 var argumentCaptor = new ArgumentCaptor<string>();
-// Verify IMyInterface.InterfaceMethod is called
-mock.Verify(x => x.InterfaceMethod(argumentCaptor.Capture()));
+mock.Verify(x => x.Call(argumentCaptor.Capture()));
 
-// Assert that the argument to IMyInterface.InterfaceMethod is equal to expectedValue
-argumentCaptor.Value
+// Assert the value that was passed to the Call method.
+argumentCaptor.Should()
+			  .BeEquivalentTo(new[] {"someValue"});
+
+// Or
+argumentCaptor.Single()
               .Should()
-			  .BeEqualTo("expectedValue");
+			  .Be("someValue");
 ```
 
 ### As a replacement to ItExpr.IsAny<T>()
 ```csharp
-var configuration = new Mock<IConfiguration>();
-configuration.Setup(x => x["AccessToken"])
-			 .Returns("mockAccessToken");
+var mock = new Mock<BaseClass>();
 
-var httpMessageHandler = new Mock<HttpMessageHandler>();
-httpMessageHandler.Protected()
-				  .Setup<Task<HttpResponseMessage>>("SendAsync",
-												   ItExpr.IsAny<HttpRequestMessage>(),
-												   ItExpr.IsAny<CancellationToken>())
-				  .Returns(() => Task.FromResult(new HttpResponseMessage(HttpStatusCode.NoContent)));
+mock.Object
+    .Call("someValue");
 
-var httpClientAdapter = new HttpClientAdapter(configuration.Object,
-											  httpMessageHandler.Object);
-await httpClientAdapter.GetAsync(new Uri("https://unit.test/api/get"))
-					   .ConfigureAwait(false);
+// Verify BaseClass.CallImpl is called
+var argumentCaptor = new ArgumentCaptor<HttpRequestMessage>();
+mock.Protected()
+    .Verify<>("CallImpl",
+	          Times.Once(),
+			  argumentCaptor.CaptureExpr());
 
-var requestMessageCaptor = new ArgumentCaptor<HttpRequestMessage>();
-httpMessageHandler.Protected()
-				  .Verify<Task<HttpResponseMessage>>("SendAsync",
-													Type.EmptyTypes,
-													Times.Once(),
-													requestMessageCaptor.CaptureExpr(),
-													ItExpr.IsAny<CancellationToken>());
-
-requestMessageCaptor.Value
-					.Headers
-					.Should()
-					.BeEquivalentTo(new Dictionary<string, IEnumerable<string>>
-									{
-										["Authorization"] = new[] { "Bearer mockAccessToken" },
-										["Accept"] = new[] { "application/json" }
-									});
+// Assert the value that was passed to the CallImpl method.
+argumentCaptor.Should()
+			  .BeEquivalentTo(new[] {"someValue"});
+// Or
+argumentCaptor.Single()
+              .Should()
+			  .Be("someValue");
 ```
 
-### Using a custom predicate to match arguments
+### Asserting values from multiple calls
 ```csharp
-
 var mock = new Mock<IMyInterface>();
 
-var sut = new SystemUnderTest(mock.Object);
-sut.CallMethod();
+for (int i = 0; i < 2; ++i)
+{
+    mock.Object
+        .Call($"someValue {i}");
+}
 
-var firstArgCaptor = new ArgumentCaptor<string>(x => x.StartsWith("frst"));
-var secondArgCaptor = new ArgumentCaptor<string>(x => x.StartsWith("scnd"));
-// Verify IMyInterface.InterfaceMethod is called
-mock.Verify(x => x.InterfaceMethod(firstArgCaptor.Capture(), secondArgCaptor.Capture()));
+// Verify IMyInterface.Call is called
+var argumentCaptor = new ArgumentCaptor<string>();
+mock.Verify(x => x.Call(argumentCaptor.Capture()), Times.EXactly(2));
 
-firstArgCaptor.Value
-              .Should()
-			  .BeEqualTo("frstValue");
-secondArgCaptor.Value
-               .Should()
-			   .BeEqualTo("scndValue");
+// Assert the values that were passed to the Call method.
+argumentCaptor.Should()
+			  .BeEquivalentTo(new[] 
+                                {
+                                    "someValue 0",
+                                    "someValue 1",
+                                });
+
+// You can also assert each value individually
+argumentCaptor[0].Should()
+			     .Be("someValue 0");
+argumentCaptor[1].Should()
+			     .Be("someValue 1");
+
+// Or in a loop
+for (int i = 0; i < argumentCaptor.Count; ++i)
+{
+    argumentCaptor[i].Should()
+                     .Be($"someValue {i}");
+}
 ```
