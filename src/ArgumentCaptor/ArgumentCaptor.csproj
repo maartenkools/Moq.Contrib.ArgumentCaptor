@@ -18,6 +18,9 @@
     <Description>Provides functionality like It.IsAny and ItExpr.IsAny while capturing the value of the arguments.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
 
+    <Deterministic Condition="'$(APPVEYOR)' == 'True'">true</Deterministic>
+    <ContinuousIntegrationBuild Condition="'$(APPVEYOR)'=='True'">true</ContinuousIntegrationBuild>
+    <DeterministicSourcePaths Condition="'$(APPVEYOR)'=='True'">true</DeterministicSourcePaths>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludeSymbols>true</IncludeSymbols>
