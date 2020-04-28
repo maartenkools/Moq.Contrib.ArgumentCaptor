@@ -17,3 +17,12 @@ test_script:
 
 artifacts:
 - path: artifacts/*
+
+deploy:
+  provider: NuGet
+  api_key:
+    secure: 1XK6ZaBwc744xb1siMJBzqQN08IpfOUftIVtkThmkMugTJGZK5rrnnSua85hS/PR
+  skip_symbols: false
+  artifact: /.*\.nupkg/
+  on:
+    appveyor_repo_tag: true
