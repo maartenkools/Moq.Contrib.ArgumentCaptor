@@ -2,7 +2,7 @@
 
 Provides an alternative to `It.IsAny<T>()` and `ItExp.IsAny<T>()` where you can capture the argument as well.
 
-[![Build status](https://ci.appveyor.com/api/projects/status/w6ro40shfante05g/branch/master?svg=true)](https://ci.appveyor.com/project/maartenkools/moq-contrib-argumentcaptor/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/w6ro40shfante05g/branch/master?svg=true)](https://ci.appveyor.com/project/maartenkools/moq-contrib-argumentcaptor/branch/master) [![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/Moq.Contrib.ArgumentCaptor)](https://www.nuget.org/packages/Moq.Contrib.ArgumentCaptor/)
 
 ## Install
 
